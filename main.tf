@@ -53,7 +53,7 @@ resource "aws_glue_trigger" "default" {
   name     = var.name
   enabled  = var.active
   schedule = var.schedule
-  type     = var.type
+  type     = var.trigger_type
   tags     = var.tags
 
   actions {
