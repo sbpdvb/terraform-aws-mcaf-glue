@@ -9,6 +9,6 @@ output "id" {
 }
 
 output "role_arn" {
-  value       = aws_iam_role.default.arn
+  value       = aws_iam_role.default[count.index].arn
   description = "ARN of the IAM Role"
 }
