@@ -20,8 +20,8 @@ resource "aws_iam_role" "default" {
 }
 
 resource "aws_iam_role_policy" "default" {
-  count  = var.role_arn == null ? 1 : 0
-  name   = "GlueRole-${var.name}"
+  count  = var.policy != null ? (var.role_arn != null ? 1 : 0) : 0
+  name   = "GlueRolePolicy-${var.name}"
   role   = aws_iam_role.default[0].id
   policy = var.policy
 }
