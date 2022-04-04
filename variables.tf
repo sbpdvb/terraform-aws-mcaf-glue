@@ -86,6 +86,7 @@ variable "type" {
   description = "The type ('CONDITIONAL' or 'ON_DEMAND' or 'SCHEDULED') of the trigger"
 }
 
+
 variable "tags" {
   type        = map(string)
   description = "A mapping of tags to assign to all resources"
