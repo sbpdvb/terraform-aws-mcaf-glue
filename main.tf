@@ -1,8 +1,3 @@
-locals {
-  #create_iam_role = var.create_role
-  iam_role_arn =  var.create_role ? var.role_arn : aws_iam_role.default[0].arn
-}
-
 data "aws_region" "current" {}
 
 data "aws_iam_policy_document" "default" {
@@ -18,7 +13,7 @@ data "aws_iam_policy_document" "default" {
 }
 
 resource "aws_iam_role" "default" {
-  count              =var.create_role
+  count              = var.create_role
   name               = "GlueRole-${var.name}"
   assume_role_policy = data.aws_iam_policy_document.default.json
   tags               = var.tags
@@ -44,7 +39,7 @@ resource "aws_glue_job" "default" {
   glue_version      = var.glue_version
   max_capacity      = var.max_capacity
   max_retries       = var.max_retries
-  role_arn          = local.iam_role_arn
+  role_arn          = var.create_role ? var.role_arn : aws_iam_role.default[0].arn
   tags              = var.tags
 
   command {
