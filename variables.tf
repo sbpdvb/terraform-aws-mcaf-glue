@@ -65,7 +65,7 @@ variable "role_arn" {
 
 variable "create_role" {
   type        = bool
-  default     = False
+  default     = false
   description = "Create IAM Role"
 }
 
