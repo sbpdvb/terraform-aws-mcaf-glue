@@ -26,6 +26,7 @@ resource "aws_iam_role_policy" "default" {
   policy = var.policy
 }
 
+
 resource "aws_iam_role_policy_attachment" "default" {
   count      = var.create_role
   role       = aws_iam_role.default[0].id
