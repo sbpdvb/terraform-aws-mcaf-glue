@@ -13,14 +13,14 @@ data "aws_iam_policy_document" "default" {
 }
 
 resource "aws_iam_role" "default" {
-  count              = var.create_role
+  count              = var.create_role ? 1 :0 
   name               = "GlueRole-${var.name}"
   assume_role_policy = data.aws_iam_policy_document.default.json
   tags               = var.tags
 }
 
 resource "aws_iam_role_policy" "default" {
-  count  = var.create_role
+  count  = var.create_role ? 1 :0 
   name   = "GlueRole-${var.name}"
   role   = aws_iam_role.default[0].id
   policy = var.policy
@@ -28,7 +28,7 @@ resource "aws_iam_role_policy" "default" {
 
 
 resource "aws_iam_role_policy_attachment" "default" {
-  count      = var.create_role
+  count      = var.create_role ? 1 :0 
   role       = aws_iam_role.default[0].id
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSGlueServiceRole"
 }
