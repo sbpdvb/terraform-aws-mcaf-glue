@@ -40,7 +40,7 @@ resource "aws_glue_job" "default" {
   glue_version      = var.glue_version
   max_capacity      = var.max_capacity
   max_retries       = var.max_retries
-  role_arn          = var.create_role ? var.role_arn : aws_iam_role.default[0].arn
+  role_arn          = var.create_role ? aws_iam_role.default[0].arn : var.role_arn 
   tags              = var.tags
 
   command {
