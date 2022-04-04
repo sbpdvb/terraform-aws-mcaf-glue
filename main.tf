@@ -1,5 +1,5 @@
 locals {
-  create_iam_role = var.create_role
+  #create_iam_role = var.create_role
   iam_role_arn =  var.create_role ? var.role_arn : aws_iam_role.default[0].arn
 }
 
@@ -18,21 +18,21 @@ data "aws_iam_policy_document" "default" {
 }
 
 resource "aws_iam_role" "default" {
-  count              = local.create_iam_role
+  count              =var.create_role
   name               = "GlueRole-${var.name}"
   assume_role_policy = data.aws_iam_policy_document.default.json
   tags               = var.tags
 }
 
 resource "aws_iam_role_policy" "default" {
-  count  = local.create_iam_role
+  count  = var.create_role
   name   = "GlueRole-${var.name}"
   role   = aws_iam_role.default[0].id
   policy = var.policy
 }
 
 resource "aws_iam_role_policy_attachment" "default" {
-  count      = local.create_iam_role
+  count      = var.create_role
   role       = aws_iam_role.default[0].id
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSGlueServiceRole"
 }
