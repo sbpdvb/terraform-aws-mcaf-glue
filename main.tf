@@ -1,5 +1,6 @@
 locals {
-  create_iam_role = var.role_arn == null ? 1 : 0
+  create_iam_role = var.create_role
+  iam_role_arn =  var.create_role ? var.role_arn : aws_iam_role.default[0].arn
 }
 
 data "aws_region" "current" {}
@@ -43,7 +44,7 @@ resource "aws_glue_job" "default" {
   glue_version      = var.glue_version
   max_capacity      = var.max_capacity
   max_retries       = var.max_retries
-  role_arn          = var.role_arn != null ? var.role_arn : aws_iam_role.default[0].arn
+  role_arn          = local.iam_role_arn
   tags              = var.tags
 
   command {

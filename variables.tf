@@ -63,6 +63,12 @@ variable "role_arn" {
   description = "An optional Glue execution role"
 }
 
+variable "create_role" {
+  type        = bool
+  default     = False
+  description = "Create IAM Role"
+}
+
 variable "schedule" {
   type        = string
   default     = null
