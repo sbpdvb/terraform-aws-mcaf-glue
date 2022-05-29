@@ -87,12 +87,35 @@ variable "tags" {
 
 variable "worker_type" {
   description = "Worker type for glue job"
-  default = "G.1x"
-  type = string 
+  default     = "G.1x"
+  type        = string
 }
 
 variable "number_of_workers" {
   description = "Optional numbers of workers"
-  default = "1"
-  type = string 
+  default     = "1"
+  type        = string
+}
+
+
+variable "cond_job_name" {
+  description = "Predicate conditional Job Name"
+  default     = null
+  type        = string
+}
+
+variable "cond_job_state" {
+  description = "Predicate conditional Job State"
+  default     = null
+  type        = string
+}
+variable "cond_crawler_name" {
+  description = "Predicate conditional Crawler Name"
+  default     = null
+  type        = string
+}
+variable "cond_crawler_state" {
+  description = "Predicate conditional Crawler State"
+  default     = null
+  type        = string
 }
