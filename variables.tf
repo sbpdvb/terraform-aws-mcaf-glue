@@ -84,3 +84,15 @@ variable "tags" {
   type        = map(string)
   description = "A mapping of tags to assign to all resources"
 }
+
+variable "worker_type" {
+  description = "Worker type for glue job"
+  default = "G.1x"
+  type = string 
+}
+
+variable "number_of_workers" {
+  description = "Optional numbers of workers"
+  default = "1"
+  type = string 
+}
