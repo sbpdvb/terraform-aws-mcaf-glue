@@ -35,7 +35,7 @@ variable "glue_version" {
 
 variable "max_capacity" {
   type        = number
-  default     = 10
+  default     = null
   description = "The maximum number of data processing units that can be allocated"
 }
 
