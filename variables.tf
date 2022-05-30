@@ -87,7 +87,7 @@ variable "tags" {
 
 variable "worker_type" {
   description = "Worker type for glue job"
-  default     = "G.1x"
+  default     = "G.1X"
   type        = string
 }
 
