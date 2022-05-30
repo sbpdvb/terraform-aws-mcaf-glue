@@ -93,7 +93,7 @@ variable "worker_type" {
 
 variable "number_of_workers" {
   description = "Optional numbers of workers"
-  default     = null
+  default     = 1
   type        = string
 }
 

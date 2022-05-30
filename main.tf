@@ -8,7 +8,7 @@ resource "aws_glue_job" "default" {
   #max_capacity      = var.max_capacity
   max_retries       = var.max_retries
   role_arn          = var.role_arn
-  #number_of_workers = var.number_of_workers
+  number_of_workers = var.number_of_workers
   worker_type       = var.worker_type
   tags              = var.tags
 
