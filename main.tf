@@ -5,10 +5,10 @@ resource "aws_glue_job" "default" {
   connections       = var.connections
   default_arguments = var.default_arguments
   glue_version      = var.glue_version
-  max_capacity      = var.max_capacity
+  #max_capacity      = var.max_capacity
   max_retries       = var.max_retries
   role_arn          = var.role_arn
-  number_of_workers = var.number_of_workers
+  #number_of_workers = var.number_of_workers
   worker_type       = var.worker_type
   tags              = var.tags
 
