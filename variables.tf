@@ -45,6 +45,12 @@ variable "max_retries" {
   description = "The maximum number of times to retry a failing job"
 }
 
+variable "timeout" {
+  type        = number
+  default     = null
+  description = "The job timeout in minutes. The default is 2880 minutes (48 hours)"
+}
+
 variable "policy" {
   type        = string
   default     = null
