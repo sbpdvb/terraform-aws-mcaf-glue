@@ -5,7 +5,7 @@ resource "aws_glue_job" "default" {
   connections       = var.connections
   default_arguments = var.default_arguments
   glue_version      = var.glue_version
-  #max_capacity      = var.max_capacity
+  max_capacity      = var.max_capacity == "glueetl" ? var.max_capacity : null
   timeout           = var.timeout
   max_retries       = var.max_retries
   role_arn          = var.role_arn
@@ -13,6 +13,7 @@ resource "aws_glue_job" "default" {
   worker_type       = var.command_name == "glueetl" ? var.worker_type : null
   tags              = var.tags
   execution_class   = var.execution_class
+  
   command {
     name            = var.command_name
     python_version  = var.python_version
