@@ -125,3 +125,20 @@ variable "cond_crawler_state" {
   default     = null
   type        = string
 }
+
+variable "max_concurrent_runs" {
+  description = "Max Concurrent runs for job"
+  default     = 1
+  type        = number
+}
+
+variable "execution_class" {
+  description = "GLUE execution class (STANDARD/FLEX)"
+  default     = "STANDARD"
+  type        = string
+
+  validation {
+    condition     = contains(["STANDARD", "FLEX"], var.execution_class)
+    error_message = "Must be STANDARD(default) or FLEX"
+  }
+}
