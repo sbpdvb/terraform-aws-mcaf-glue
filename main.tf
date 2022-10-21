@@ -9,14 +9,17 @@ resource "aws_glue_job" "default" {
   timeout           = var.timeout
   max_retries       = var.max_retries
   role_arn          = var.role_arn
-  number_of_workers = var.number_of_workers
-  worker_type       = var.worker_type
+  number_of_workers = var.command_name == "glueetl" ? var.number_of_workers : null
+  worker_type       = var.command_name == "glueetl" ? var.worker_type : null
   tags              = var.tags
-
+  execution_class   = var.execution_class
   command {
     name            = var.command_name
     python_version  = var.python_version
     script_location = var.script_location
+  }
+  execution_property {
+    max_concurrent_runs = var.max_concurrent_runs
   }
 }
 
