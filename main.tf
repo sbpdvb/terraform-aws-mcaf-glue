@@ -10,10 +10,10 @@ resource "aws_glue_job" "default" {
   max_retries       = var.max_retries
   role_arn          = var.role_arn
   number_of_workers = var.command_name == "glueetl" ? var.number_of_workers : null
-  worker_type       = var.command_name == "glueetl" ? var.worker_type : null
+  worker_type       = var.worker_type
   tags              = var.tags
   execution_class   = var.execution_class
-  
+
   command {
     name            = var.command_name
     python_version  = var.python_version
