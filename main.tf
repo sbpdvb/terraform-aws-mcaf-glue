@@ -5,11 +5,11 @@ resource "aws_glue_job" "default" {
   connections       = var.connections
   default_arguments = var.default_arguments
   glue_version      = var.glue_version
-  max_capacity      = var.max_capacity == "glueetl" ? var.max_capacity : null
+  max_capacity      = var.max_capacity
   timeout           = var.timeout
   max_retries       = var.max_retries
   role_arn          = var.role_arn
-  number_of_workers = var.command_name == "glueetl" ? var.number_of_workers : null
+  number_of_workers = var.number_of_workers
   worker_type       = var.worker_type
   tags              = var.tags
   execution_class   = var.execution_class
