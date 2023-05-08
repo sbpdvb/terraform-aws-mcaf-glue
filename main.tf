@@ -21,6 +21,8 @@ resource "aws_glue_job" "default" {
   execution_property {
     max_concurrent_runs = var.max_concurrent_runs
   }
+
+  security_configuration = var.enable_security_configuration ? aws_glue_security_configuration.security[0].id : null
 }
 
 resource "aws_glue_trigger" "default" {
@@ -47,3 +49,24 @@ resource "aws_glue_trigger" "default" {
     }
   }
 }
+
+resource "aws_glue_security_configuration" "security" {
+  count = var.enable_security_configuration ? 1 : 0
+  name  = var.name
+
+  encryption_configuration {
+    cloudwatch_encryption {
+      cloudwatch_encryption_mode = var.cloudwatch_encryption_mode
+    }
+
+    job_bookmarks_encryption {
+      job_bookmarks_encryption_mode = var.job_bookmarks_encryption
+    }
+
+    s3_encryption {
+      kms_key_arn        = var.kms_key_arn
+      s3_encryption_mode = length(var.kms_key_arn) > 0 ? "SSE-KMS" : var.s3_encryption
+    }
+  }
+}
+

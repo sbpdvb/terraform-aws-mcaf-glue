@@ -142,3 +142,25 @@ variable "execution_class" {
     error_message = "Must be STANDARD(default) or FLEX"
   }
 }
+
+variable "enable_security_configuration" {
+  default     = false
+  type        = bool
+  description = "enable the security configuration"
+}
+
+variable "cloudwatch_encryption_mode" {
+  default = "DISABLED"
+}
+
+variable "job_bookmarks_encryption" {
+  default = "DISABLED"
+}
+
+variable "s3_encryption" {
+  default = "DISABLED"
+}
+
+variable "kms_key_arn" {
+  default = null
+}
