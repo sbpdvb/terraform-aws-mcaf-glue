@@ -56,10 +56,12 @@ resource "aws_glue_security_configuration" "security" {
 
   encryption_configuration {
     cloudwatch_encryption {
+      kms_key_arn                = var.kms_key_arn
       cloudwatch_encryption_mode = var.cloudwatch_encryption_mode
     }
 
     job_bookmarks_encryption {
+      kms_key_arn                   = var.kms_key_arn
       job_bookmarks_encryption_mode = var.job_bookmarks_encryption
     }
 

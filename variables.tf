@@ -150,15 +150,27 @@ variable "enable_security_configuration" {
 }
 
 variable "cloudwatch_encryption_mode" {
-  default = "DISABLED"
+  default = "SSE-KMS"
+  validation {
+    condition     = contains(["DISABLED", "SSE-KMS"], var.cloudwatch_encryption_mode)
+    error_message = "Must be DISABLED or SSE-KMS"
+  }
 }
 
 variable "job_bookmarks_encryption" {
-  default = "DISABLED"
+  default = "CSE-KMS"
+  validation {
+    condition     = contains(["DISABLED", "CSE-KMS"], var.job_bookmarks_encryption)
+    error_message = "Must be DISABLED or CSE-KMS"
+  }
 }
 
 variable "s3_encryption" {
-  default = "DISABLED"
+  default = "SSE-KMS"
+  validation {
+    condition     = contains(["DISABLED", "SSE-KMS", "SSE-S3"], var.s3_encryption)
+    error_message = "Must be DISABLED or SSE-KMS ir SSE-S3"
+  }
 }
 
 variable "kms_key_arn" {
