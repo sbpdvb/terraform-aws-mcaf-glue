@@ -9,6 +9,6 @@ output "id" {
 }
 
 output "security_configuration_id" {
-  value       = aws_glue_security_configuration.security[0].id
+  value       = var.enable_security_configuration ? aws_glue_security_configuration.security[0].id : null
   description = "Glue security configuration name"
 }
