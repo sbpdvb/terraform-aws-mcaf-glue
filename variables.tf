@@ -142,3 +142,37 @@ variable "execution_class" {
     error_message = "Must be STANDARD(default) or FLEX"
   }
 }
+
+variable "enable_security_configuration" {
+  default     = false
+  type        = bool
+  description = "enable the security configuration"
+}
+
+variable "cloudwatch_encryption_mode" {
+  default = "SSE-KMS"
+  validation {
+    condition     = contains(["DISABLED", "SSE-KMS"], var.cloudwatch_encryption_mode)
+    error_message = "Must be DISABLED or SSE-KMS"
+  }
+}
+
+variable "job_bookmarks_encryption" {
+  default = "CSE-KMS"
+  validation {
+    condition     = contains(["DISABLED", "CSE-KMS"], var.job_bookmarks_encryption)
+    error_message = "Must be DISABLED or CSE-KMS"
+  }
+}
+
+variable "s3_encryption" {
+  default = "SSE-KMS"
+  validation {
+    condition     = contains(["DISABLED", "SSE-KMS", "SSE-S3"], var.s3_encryption)
+    error_message = "Must be DISABLED or SSE-KMS ir SSE-S3"
+  }
+}
+
+variable "kms_key_arn" {
+  default = null
+}
