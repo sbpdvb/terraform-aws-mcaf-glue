@@ -67,7 +67,7 @@ resource "aws_glue_security_configuration" "security" {
 
     s3_encryption {
       kms_key_arn        = var.kms_key_arn
-      s3_encryption_mode = length(var.kms_key_arn) > 0 ? "SSE-KMS" : var.s3_encryption
+      s3_encryption_mode = var.s3_encryption
     }
   }
 }
