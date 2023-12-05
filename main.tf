@@ -25,8 +25,10 @@ resource "aws_glue_job" "default" {
   security_configuration = var.enable_security_configuration ? aws_glue_security_configuration.security[0].id : null
 }
 
+
+
 resource "aws_glue_trigger" "default" {
-  name     = var.name
+  name     = "${var.name}-${var.trigger_type}"
   enabled  = var.active
   schedule = var.schedule
   type     = var.trigger_type
