@@ -28,6 +28,7 @@ resource "aws_glue_job" "default" {
 
 
 resource "aws_glue_trigger" "default" {
+  count = var.trigger_type != null ? 1 : 0
   name     = "${var.name}-${var.trigger_type}"
   enabled  = var.active
   schedule = var.schedule
