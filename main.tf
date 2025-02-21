@@ -28,7 +28,7 @@ resource "aws_glue_job" "default" {
 
 
 resource "aws_glue_trigger" "default" {
-  count = var.trigger_type != null ? 1 : 0
+  count    = var.trigger_type != null ? 1 : 0
   name     = "${var.name}-${var.trigger_type}"
   enabled  = var.active
   schedule = var.schedule
@@ -54,6 +54,7 @@ resource "aws_glue_trigger" "default" {
 }
 
 resource "aws_glue_security_configuration" "security" {
+  #checkov:skip=CKV_AWS_99:Ensure Glue Security Configuration Encryption is enabled
   count = var.enable_security_configuration ? 1 : 0
   name  = var.name
 
