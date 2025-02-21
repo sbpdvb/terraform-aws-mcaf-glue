@@ -144,7 +144,7 @@ variable "execution_class" {
 }
 
 variable "enable_security_configuration" {
-  default     = false
+  default     = true
   type        = bool
   description = "enable the security configuration"
 }
